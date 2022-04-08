@@ -1,0 +1,7 @@
+i = input()
+print("Aenar")
+print("Mike")
+print("Joss Whedon")
+print("Minos")
+print("Pōja Verdon")
+print("Red Panda")
