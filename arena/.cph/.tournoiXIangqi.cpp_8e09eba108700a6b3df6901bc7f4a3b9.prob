@@ -1,0 +1,1 @@
+{"name":"Local: tournoiXIangqi","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\tournoiXIangqi.cpp","tests":[{"id":1688909679982,"input":"3\n2 2\n1 50\n2 1","output":"98\n50"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\tournoiXIangqi.cpp","group":"local","local":true}

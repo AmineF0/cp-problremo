@@ -1,0 +1,1 @@
+{"name":"Local: count_dig","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\count_dig.cpp","tests":[{"id":1690323643023,"input":"5\n0 10\n10 10\n1000 10\n5 2\n100000000000000 7","output":"1\n12\n2894\n12"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\count_dig.cpp","group":"local","local":true}

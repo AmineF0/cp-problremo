@@ -6,17 +6,19 @@ int main(){
 
     int n; // read the number of people
 
-    int ans=0;
-
-    for(int i=0; i<n; i++){ // for each person 
-        int person_age ; 
-        cin >> person_age ;
-        if(person_age > ans ){
-            ans = person_age;
-        }
+    char i = 'G';
+    unsigned long long l=0, r=999999998988989LL;
+    unsigned long long tmp = l + (r-l)/2;
+    int cnt=0;
+    
+    while(i!='0'){
+        if(i=='G'){
+            l = tmp+1;
+        } else if(i=='S') r = tmp-1;
+        cnt++;
     }
 
-    cout << ans; 
+    cout << cnt << endl;
 
 
     return 0;

@@ -1,0 +1,1 @@
+{"name":"Local: call_center","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\call_center.cpp","tests":[{"id":1688598037317,"input":"1\n5 2\n1 2 3 1 2","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\call_center.cpp","group":"local","local":true}

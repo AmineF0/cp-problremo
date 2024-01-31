@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
+vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n);
+
+template <typename T> bool exist(T& s, int a){
+    return s.find(a) != s.end();
+}
+
+double diff(double t, double d){
+    double a = t;
+    double b = d-t;
+    return (a+b) - a*b;
+}
+
+void solve(){
+
+    double d; cin >> d;
+
+    if(d==0){
+        cout << setprecision(11) << "Y " << 0 << " " << 0 << endl;
+        return ;
+    }
+    
+    double mx = d/2, mn = 0;
+
+
+    double t = (mx+mn)/2;
+    double dif = diff(t, d);
+
+    while(abs(dif) > 1e-7 && mn < mx){
+        //cout << mn << " " << mx << "\t" << dif<< endl;;
+        if(dif>0){
+            mn = t;
+        } else if (dif < 0){
+            mx = t;
+        }
+        t = (mx+mn)/2;
+        dif = diff(t, d);
+    }
+
+    if(mn >= mx) cout << "N\n";
+    else cout << setprecision(11) << "Y " << t << " " << d-t << endl;
+
+}
+
+
+
+
+
+int main(){
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
+        solve();
+    return 0;
+}
+
+vi readvi(int n){
+    vi v(n);
+    for(int i=0;i <n; i++) cin >> v[i];
+    return v;
+}
+
+int maxvi(vi v){
+    int mx = v[0];
+    for(auto i : v) mx = max(mx, i);
+    return mx;
+}
+
+int minvi(vi v){
+    int mx = v[0];
+    for(auto i : v) mx = min(mx, i);
+    return mx;
+}
+
+void print(vii v){
+    for(vi vv : v) print(vv);
+}
+
+void print(vi v){
+    for(int i : v) cout << i <<"";
+    cout << endl;
+}
+
+ll fact(int n){
+    int prod=1;
+    for(int i=1; i<=n; i++) prod*=i;
+    return prod;
+}

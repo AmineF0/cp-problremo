@@ -1,0 +1,1 @@
+{"name":"Local: maximum_subarray","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\maximum_subarray.cpp","tests":[{"id":1667587308200,"input":"10\n10 -10 -6 -2 6 5 -3 8 9 -10","output":"25"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\maximum_subarray.cpp","group":"local","local":true}

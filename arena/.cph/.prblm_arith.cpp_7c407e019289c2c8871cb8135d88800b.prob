@@ -1,0 +1,1 @@
+{"name":"Local: prblm_arith","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\prblm_arith.cpp","tests":[{"id":1667590716607,"input":"4\n10 11\n9 10\n10 7\n10 9","output":"12\n11\n7\n9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\prblm_arith.cpp","group":"local","local":true}

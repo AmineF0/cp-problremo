@@ -1,0 +1,1 @@
+{"name":"Local: a","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\100code\\a.cpp","tests":[{"id":1679133860745,"input":"2 2 2","output":"5"},{"id":1679136330332,"input":"3 4 3","output":"9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\100code\\a.cpp","group":"local","local":true}

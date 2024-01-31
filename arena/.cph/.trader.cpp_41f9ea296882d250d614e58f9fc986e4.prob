@@ -1,0 +1,1 @@
+{"name":"Local: trader","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\trader.cpp","tests":[{"id":1688907077468,"input":"1\n1 1 1 1000000000000","output":"4409"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\trader.cpp","group":"local","local":true}

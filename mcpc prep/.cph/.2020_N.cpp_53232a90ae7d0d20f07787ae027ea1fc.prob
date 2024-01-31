@@ -1,0 +1,1 @@
+{"name":"Local: 2020_N","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\mcpc prep\\2020_N.cpp","tests":[{"id":1658537773431,"input":"2\n5 5 5\n4 5 3 2 1\n4 3 5\n1 2 3 4","output":"15\n10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\mcpc prep\\2020_N.cpp","group":"local","local":true}

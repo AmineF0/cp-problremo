@@ -1,0 +1,1 @@
+{"name":"Local: find_comp","url":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\find_comp.cpp","tests":[{"id":1688911012251,"input":"4 3\n??.\n?..\n..?\n?.?","output":"1\n7\n7\n7\n7\n7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Amine\\Desktop\\projects\\cp\\arena\\find_comp.cpp","group":"local","local":true}
