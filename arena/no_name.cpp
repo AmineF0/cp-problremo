@@ -124,9 +124,7 @@ void solve2(){
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-
-    
-        solve2();
+    solve2();
     return 0;
 }
 

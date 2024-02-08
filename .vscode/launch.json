@@ -15,8 +15,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Amine/Desktop/projects/cp",
-      "program": "c:/Users/Amine/Desktop/projects/cp/build/Debug/outDebug",
+      "cwd": "c:/Users/Amine/Desktop/cp",
+      "program": "c:/Users/Amine/Desktop/cp/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

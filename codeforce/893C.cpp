@@ -1,58 +1,93 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
-long long calcZeros(vector<int> v){
-    vector<int> q(v.size(), 0);
-    q[v.size()-1] = (v[v.size()-1]==0);
-    for(int j=v.size()-2; j>=0; j--)
-      q[j] = q[j+1] + (v[j]==0);
+struct fast_dsu {
+	const int dsu_MAXN = 100005;
+	vector<int> dsu_par, dsu_sz;
 
-    long long ans = 0;
-    //print(q);
-    for(int j=0; j<v.size(); j++){
-      if(v[j]==1) ans += q[j];
-    }
-    return ans;
-}
+	void init(int n) {
+    dsu_par.resize(n);
+    dsu_sz.resize(n, -1);
+		for (int i = 0; i < n; i++) {
+			dsu_par[i] = i;
+		}
+	}
+
+	int find(int v) {
+		// while (v != dsu_par[v]) v = dsu_par[v];
+		while ((v = dsu_par[v]) != dsu_par[v]);
+		return v;
+	}
+
+	bool connected(int v, int u) {
+		return find(v) == find(u);
+	}
+
+	void merge(int v, int u) {
+		v = find(v);
+		u = find(u);
+		
+		if (dsu_sz[v] > dsu_sz[u]) {
+			int t = v;
+			v = u;
+			u = t;
+		}
+		
+		dsu_par[u] = v;
+		dsu_sz[v] += dsu_sz[u];
+	}
+};
 
 void solve(){
-    int n; cin >> n;
-    vector<int> v(n);
-    for(int i=0; i<n; i++) cin >> v[i];
-    long long mx = 0;
+    int n, m; cin >> n >> m;
 
-    long long ans= calcZeros(v);
-    mx = max(mx, ans);
+    vi a = readvi(n);
+  
+    fast_dsu dsu;
 
-    vector<int> v2 = v;
-    for(int i=0; i<n ; i++){
-      if(v2[i]==0) {v2[i]=1;break;}
+    vector<pair<int, ii>> g;
+    // [u] = list [v, w]
+    for(int i=0; i<m; i++){
+        int u, v; cin >> u >> v ;
+        g.push_back({0, {u, v}});
+        g.push_back({0, {v, u}});
     }
 
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
-
-    v2 = v;
-    for(int i=n-1; i>=0 ; i--){
-      if(v2[i]==1) {v2[i]=0;break;}
+    for(int i=0; i<n; i++){
+        g.push_back({a[i], {i+1, 0}});
     }
 
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
+    sort(g.begin(), g.end());
 
-    cout << mx <<endl;
+    dsu.init(n+1);
+
+    ll ans = 0;
+
+    for(auto i : g){
+        int u = i.second.first;
+        int v = i.second.second;
+        int w = i.first;
+
+        if(dsu.connected(u, v)) continue;
+
+        dsu.merge(u, v);
+        // cout << u << " " << v << " " << w << endl;
+        ans += w;
+    }
+
+    cout << ans;
+
+    cout << endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    int times; cin >> times; 
-    for(int oc=0; oc<times; oc++)
-        solve();
+    solve();
     return 0;
 }
 

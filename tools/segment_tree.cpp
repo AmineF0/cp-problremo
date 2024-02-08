@@ -90,5 +90,5 @@ struct SegTree{
             st[v] = st[v*2] + st[v*2+1];
         }
     }
-
 };
+

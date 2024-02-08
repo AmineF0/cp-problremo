@@ -7,10 +7,14 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 
 void solve(){
-    int n; cin >> n;
-    vi v = readvi(n);
-
-
+    int a,b; cin >> a>>b;
+    int i=0;
+    while(a<=b){
+        a*=3;
+        b*=2;
+        i++;
+    }
+    cout << i;
     cout << endl;
 }
 
@@ -18,8 +22,8 @@ void solve(){
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    int times; cin >> times; 
-    for(int oc=0; oc<times; oc++)
+    // int times; cin >> times; 
+    // for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }

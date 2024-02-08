@@ -1,49 +1,76 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
-long long calcZeros(vector<int> v){
-    vector<int> q(v.size(), 0);
-    q[v.size()-1] = (v[v.size()-1]==0);
-    for(int j=v.size()-2; j>=0; j--)
-      q[j] = q[j+1] + (v[j]==0);
+#define MOD 1000000007
 
-    long long ans = 0;
-    //print(q);
-    for(int j=0; j<v.size(); j++){
-      if(v[j]==1) ans += q[j];
+long long binpow(long long a, long long b) {
+    a %= MOD;
+    long long res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
     }
-    return ans;
+    return res;
 }
 
+long long modInv(long long a, long long m) {
+    return binpow(a, m - 2);
+}
+
+double fastMOD(double a){
+    while(a>MOD) a-=MOD;
+    return a;
+}
+
+int C(int n, int k) {
+    long long res = 1;
+    for (int i = 1; i <= k; ++i){
+        res = ((res * (n - k + i))%MOD * modInv(i, MOD)) % MOD;
+    }
+    return res;
+}
+
+int C(int n, int k, vi& precomputeModInverse) {
+    long long res = 1;
+    for (int i = 1; i <= k; ++i){
+        res = ((res * (n - k + i))%MOD * precomputeModInverse[i]) % MOD;
+    }
+    return res;
+}
+
+vi precomputeModInverse(int n){
+  vi inv(n+1);
+  for(int i = 0; i <= n; i++)
+    inv[i] = modInv(i, MOD);
+
+  return inv;
+}
+
+//permutation
+int P(int n, int k) {
+    long long res = 1;
+    for (int i = 1; i <= k; ++i){
+        res = ((res * (n - k + i))%MOD);
+    }
+    return res;
+}
+
+
 void solve(){
-    int n; cin >> n;
-    vector<int> v(n);
-    for(int i=0; i<n; i++) cin >> v[i];
-    long long mx = 0;
+    int n,k; cin >> n >> k;
 
-    long long ans= calcZeros(v);
-    mx = max(mx, ans);
-
-    vector<int> v2 = v;
-    for(int i=0; i<n ; i++){
-      if(v2[i]==0) {v2[i]=1;break;}
+    ll comb = 1;
+    for(int i=0; i<k; i++){
+      comb = (comb*n)%MOD;
     }
 
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
 
-    v2 = v;
-    for(int i=n-1; i>=0 ; i--){
-      if(v2[i]==1) {v2[i]=0;break;}
-    }
-
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
-
-    cout << mx <<endl;
+    cout << comb <<endl;
 }
 
 

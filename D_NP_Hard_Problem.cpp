@@ -1,57 +1,76 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
-long long calcZeros(vector<int> v){
-    vector<int> q(v.size(), 0);
-    q[v.size()-1] = (v[v.size()-1]==0);
-    for(int j=v.size()-2; j>=0; j--)
-      q[j] = q[j+1] + (v[j]==0);
 
-    long long ans = 0;
-    //print(q);
-    for(int j=0; j<v.size(); j++){
-      if(v[j]==1) ans += q[j];
-    }
-    return ans;
-}
 
 void solve(){
-    int n; cin >> n;
-    vector<int> v(n);
-    for(int i=0; i<n; i++) cin >> v[i];
-    long long mx = 0;
+    int n, m; cin >> n >> m;
 
-    long long ans= calcZeros(v);
-    mx = max(mx, ans);
+    vi color(n, -1);
+    vii g(n);
 
-    vector<int> v2 = v;
-    for(int i=0; i<n ; i++){
-      if(v2[i]==0) {v2[i]=1;break;}
+    for(int i=0; i<m; i++){
+        int a, b; cin >> a >> b;
+        a--,b--;
+        g[a].push_back(b);
+        g[b].push_back(a);
     }
 
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
+    bool f = true;
+    for(int i=0; i<n && f; i++){
+        if(color[i]!=-1) continue;
+        queue<int> q, qq;
+        q.push(i);
+        color[i]=0;
+        int c = 0;
+        while(!q.empty() && f){
+            while(!q.empty() && f){
+                int t = q.front(); q.pop();
+                for(auto n : g[t]){
+                    // cout << n << t << c << endl;
+                    if(color[n] == c) {
+                        // cout << n << t << c << endl;
+                        f = false;
+                    }
+                    else if(color[n]==-1) {
+                        color[n] = !c;
+                        qq.push(n);
+                }}
+            }
+            swap(q, qq);
+            c=!c;
+        }
 
-    v2 = v;
-    for(int i=n-1; i>=0 ; i--){
-      if(v2[i]==1) {v2[i]=0;break;}
     }
 
-    ans = calcZeros(v2);
-    mx = max(mx, ans);
+    vi fv, sv;
+    for(int i=0; i<n; i++){
+        if(color[i]) fv.push_back(i);
+        else sv.push_back(i);
+    }
 
-    cout << mx <<endl;
+
+
+    if(!f) cout << -1;
+    else {
+        cout << fv.size() << endl;
+        for(auto i : fv) cout << i+1 << " ";
+        cout << endl << sv.size() << endl;
+        for(auto i : sv) cout << i+1 << " ";
+    }
+
+    cout << endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    int times; cin >> times; 
-    for(int oc=0; oc<times; oc++)
+    // int times; cin >> times; 
+    // for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }
