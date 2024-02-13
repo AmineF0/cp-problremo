@@ -5,13 +5,18 @@ typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typ
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
 
+
 void solve(){
     int n; cin >> n;
-    ll ans = 0;
+    int t = 0;
 
+    while(n>=100) t++, n-=100;
+    while(n>=20) t++, n-=20;
+    while(n>=10) t++, n-=10;
+    while(n>=5) t++, n-=5;
+    while(n>=1) t++, n-=1;
 
-
-    cout << ans << endl;
+    cout << t <<endl;
 }
 
 

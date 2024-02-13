@@ -6,9 +6,10 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 
 void solve(){
-    int n; cin >> n;
-    ll ans = 0;
+    int n , k; cin >> n >> k;
+    int ans = INT_MAX;
 
+    vi v = readvi(n); 
 
 
     cout << ans << endl;
@@ -18,8 +19,8 @@ void solve(){
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }

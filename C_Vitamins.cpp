@@ -5,13 +5,42 @@ typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typ
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
 
+
 void solve(){
     int n; cin >> n;
-    ll ans = 0;
 
+    int s = 1 << 3;
+    vector<ll> dp(s , INT_MAX);
 
+    dp[0]=0;
 
-    cout << ans << endl;
+    vector<ll> price(n);
+    vector<int> type(n);
+    for(int i=0; i<n; i++){
+        cin >> price[i];
+        string s; cin >> s;
+        int t=0;
+        for(char c : s) t |= 1 << (c-'A');
+        type[i] = t;
+        // dp[t] = min(dp[t], price[i]);
+    }
+
+    
+
+    
+
+    for(int i=0; i<n; i++){
+      for(int j=0; j<s; j++){
+        ll a = type[i] | j;
+        dp[a] = min(dp[a], dp[j]+price[i]);
+        // cout << a << " " <<dp[a] << endl;
+      }
+    }
+
+    if(dp[(1<<3) -1]==INT_MAX) cout << -1 << endl;
+    else cout << dp[(1<<3) -1];
+
+    cout << endl;
 }
 
 

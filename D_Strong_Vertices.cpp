@@ -5,21 +5,39 @@ typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typ
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
 
+
 void solve(){
     int n; cin >> n;
-    ll ans = 0;
+    vi v(n, 0);
+    vector<pair<int, int>> vs(n);
+    for(int i=0; i<n ; i++) cin >> v[i];
+    for(int i=0; i<n ; i++) {
+      int b; cin >> b; v[i]-=b;
+      vs[i]={v[i], i+1};
+    }
+    sort(vs.begin(), vs.end());
 
+    int max_v = vs[n-1].first;
 
+    int i = n-1;
+    vector<int> ans;
+    while(i>=0 && vs[i].first == max_v){
+      ans.push_back(vs[i].second);
+      i--;
+    }
+    cout << ans.size() << endl;
+    reverse(ans.begin(), ans.end());
+    for(auto i : ans) cout << i << " ";
 
-    cout << ans << endl;
+    cout << endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }

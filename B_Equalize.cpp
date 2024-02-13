@@ -7,39 +7,33 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 
 void solve(){
-    // int n; cin >> n;
+    int n; cin >> n;
+    vi v = readvi(n);
+    set<int> s(v.begin(), v.end());
+    int ans = 0;
+    vector<int> vs(s.begin(), s.end());
 
-    vector<string> v(4);
-    for(int i=0; i<4; i++) cin >> v[i];
-
-    bool f = false;
-
-    for(int i=0; i<3 && !f; i++){
-      for(int j=0;j<3 && !f; j++){
-        int cnt = 0;
-        
-        cnt += (v[i][j]=='#') ;
-        cnt += (v[i+1][j]=='#') ;
-        cnt += (v[i][j+1]=='#') ;
-        cnt += (v[i+1][j+1]=='#') ;
-
-
-        if(cnt >= 3 || cnt <=1) f = true;
+    int i = 0, j=0;
+    while(j<vs.size()){
+      if(vs[j]-vs[i]<n){
+        j++;
+        ans = max(j-i, ans);
+      } else {
+        i++;
+        if(i>j) j++;
       }
     }
+    
 
-    cout << (f?"YES":"NO"); 
-
-
-    cout << endl;
+    cout << ans <<endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }

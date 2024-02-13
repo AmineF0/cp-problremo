@@ -6,12 +6,55 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 
 void solve(){
-    int n; cin >> n;
+    int n, k; cin >> n >> k;
     ll ans = 0;
+    vi v = readvi(n);
+    vi flag(n, 0);
 
+    int last_can = -1;
+    int dist = 0;
+  
+    int i=0;
+    while(i<n){
+      if(!flag[i]) dist++;
 
+      if(v[i]==1){
+        last_can = i;
+      }
+      if(dist>=k || (i==n-1 && flag[i]!=1)) { 
+        if(last_can>=0){
+          ans++;
+          int p=0;
+          int j=last_can+1;
+          // cout << last_can << " " <<dist << i << endl;
 
-    cout << ans << endl;
+          for(int x=max(0, last_can-k+1); x<min(n, last_can+k); x++){
+            flag[x]=1;
+          }
+          // print(flag);
+
+          i=j-1;
+          last_can=-1;
+          dist = 0;
+
+        } else {
+          // cout << dist << i << endl;
+          ans = -1;
+          break;
+        }
+      }
+
+      
+      i++;
+    }
+
+    bool b = true;
+    for(auto i : flag) b &= i;
+
+    // print(flag);
+
+    if(!b) cout << -1 << endl;
+    else cout << ans << endl;
 }
 
 

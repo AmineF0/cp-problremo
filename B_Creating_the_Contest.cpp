@@ -7,7 +7,18 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 void solve(){
     int n; cin >> n;
-    ll ans = 0;
+    int ans = 0;
+
+    vi v = readvi(n);
+
+    int i=0, j=0;
+
+    
+    while(j < v.size()){
+      while(j+1 < v.size() && v[j+1]<=2*v[j]) j++;
+      ans = max(ans, j-i+1);
+      i=++j;
+    }
 
 
 

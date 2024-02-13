@@ -7,19 +7,61 @@ vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii
 
 void solve(){
     int n; cin >> n;
-    ll ans = 0;
+    // ll ans = 0;
+    vi v= readvi(n);
+    vi ans(n, -1);
 
+    vector<pair<int, int>> arr(n);
 
+    for(int i=0; i<n ; i++){
+      arr[i] = {v[i],i};
+    }
 
-    cout << ans << endl;
+    sort(arr.begin(), arr.end());
+
+    vl prefix_sum(n, 0);
+    map<ll, ll> cont;
+    prefix_sum[0] = arr[0].first;
+    cont[arr[0].second] = arr[0].second;
+
+    for(int i=1; i<n ; i++){
+      prefix_sum[i] = prefix_sum[i-1] + arr[i].first;
+      cont[arr[i].first] = prefix_sum[i];
+    }
+
+    vl ar(n, 0);
+    for(int i=0; i<n ;i++) ar[i]= arr[i].first;
+
+    for(int i=0; i<n; i++){
+      int ind = arr[i].second, val = arr[i].first;
+      ll ps = prefix_sum[i];
+      int prev = ind;
+      cout << ind <<" - " << val<< endl;
+      int nxt = (lower_bound(ar.begin(), ar.end(), ps)-ar.begin());
+      if(nxt == ar.size()) nxt--;
+      while(nxt+1 < ar.size() && ar[nxt] == ar[nxt+1]) nxt++;
+      while(nxt != prev){
+        ps = prefix_sum[nxt];
+        prev = nxt;
+        cout << nxt << " "<< ps << endl;
+        nxt = (lower_bound(ar.begin(), ar.end(), ps)-ar.begin());
+        if(nxt == ar.size()) nxt--;
+      }
+
+      ans[ind] = nxt;
+      cout << endl;
+    }
+
+    print(ans);
+    // cout << ans << endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }
@@ -58,7 +100,7 @@ void print(vii v){
 }
 
 void print(vi v){
-    for(int i : v) cout << i <<"";
+    for(int i : v) cout << i <<" ";
     cout << endl;
 }
 

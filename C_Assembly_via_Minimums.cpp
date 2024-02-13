@@ -5,21 +5,41 @@ typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typ
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
 
+
 void solve(){
-    int n; cin >> n;
-    ll ans = 0;
+    int o; cin >> o;
+    int n = o*(o-1)/2;
 
+    vi v = readvi(n);
+    map<int , int> occ;
+    for(int i : v) occ[i]++;
 
+    vi ans;
+    ans.reserve(o);
 
-    cout << ans << endl;
+    int t=o;
+
+    int ac=0;
+    t=t-1;
+    for(auto [k,v] : occ) {
+      while(v>ac){
+        ans.push_back(k);
+        ac+=t;
+        t--;
+      }
+      ac=0;
+    }
+    ans.push_back(1e9);
+
+    print(ans);
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }
@@ -58,7 +78,7 @@ void print(vii v){
 }
 
 void print(vi v){
-    for(int i : v) cout << i <<"";
+    for(int i : v) cout << i <<" ";
     cout << endl;
 }
 

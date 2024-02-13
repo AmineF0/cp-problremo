@@ -4,12 +4,67 @@ using namespace std;
 typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
+int n, k; 
+#define MOD 1000000007
+
+long long binpow(long long a, long long b) {
+    a %= MOD;
+    long long res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
+    }
+    return res;
+}
+
+long long modInv(long long a, long long m) {
+    return binpow(a, m - 2);
+}
+
+double fastMOD(double a){
+    while(a>MOD) a-=MOD;
+    return a;
+}
+
+ll C(int n, int k) {
+    double res = 1;
+    for (int i = 1; i <= k; ++i){
+        res = ((res * (n - k + i))/ i);
+    }
+    return (ll)(res+0.01);
+}
+
+
+
+vi precomputeModInverse(int n){
+  vi inv(n+1);
+  for(int i = 0; i <= n; i++)
+    inv[i] = modInv(i, MOD);
+
+  return inv;
+}
+
+//permutation
+int P(int n, int k) {
+    long long res = 1;
+    for (int i = 1; i <= k; ++i){
+        res = ((res * (n - k + i))%MOD);
+    }
+    return res;
+}
+
 
 void solve(){
-    int n; cin >> n;
-    ll ans = 0;
+    cin >> n >> k;
 
+    vector<vector<ll>> dp(n, vector<ll>(k+1, -1));
 
+    ll ans =1;
+    if(k>1) ans += C(n, 2);
+    if(k>2) ans += P(2, 1) * C(n, 3);
+    if(k>3) ans += (P(3, 1)+P(3, 2)) * C(n, 4);
 
     cout << ans << endl;
 }

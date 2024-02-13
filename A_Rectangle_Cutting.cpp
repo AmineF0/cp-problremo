@@ -5,21 +5,36 @@ typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typ
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
 
+
 void solve(){
-    int n; cin >> n;
-    ll ans = 0;
+    int a,b; cin >> a >> b;
+
+    if(a%2 && b%2) cout << "No";
+    else {
+      if(b%2) swap(b,a);
+      int d = b/2;
+      if(2*a == b && d==a) {
+        if(a%2==0){
+          int f = a/2;
+          if(2*b == a && f==b) {
+            cout << "No";
+          }else cout << "Yes";
+        }
+        else cout << "No";}
+      else cout << "Yes";
+    } 
 
 
 
-    cout << ans << endl;
+    cout << endl;
 }
 
 
 int main(){
     ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
-    // int times; cin >> times; 
-    // for(int oc=0; oc<times; oc++)
+    int times; cin >> times; 
+    for(int oc=0; oc<times; oc++)
         solve();
     return 0;
 }

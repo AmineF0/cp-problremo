@@ -4,14 +4,46 @@ using namespace std;
 typedef pair<int,int> ii;typedef long long ll;typedef unsigned long long ull;typedef string S;typedef vector<int> vi;typedef vector<vi> vii;typedef vector<ll> vl;typedef vector<vl> vll;typedef map<int,int> mii;typedef map<int,S> mis;typedef map<S,int> msi;typedef set<int> si;typedef set<S> ss;
 vi readvi(int n);int maxvi(vi v);int minvi(vi v);void print(vi v);void print(vii v);ll fact(int n); ull binpow(ull a, ull b);template <typename T> bool exist(T& s, int a);
 
+ll n,k,p; 
+vector<ll> pos, keys;
 
-void solve(){
-    int n; cin >> n;
+ll dpf(vector<vector<ll>>& dp, int i, int j){
+    if(i==n) return 0;
+    if(dp[i][j] != -1) return dp[i][j];
     ll ans = 0;
 
+    ll put = 
+        max(abs(p-keys[j])+abs(keys[j]-pos[i])
+        , dpf(dp, i+1, j+1));
+    ll skip = LONG_MAX;
+    
+
+    if(n-i <= k-j-1)
+      skip = dpf(dp, i, j+1);
+
+    // cout << i << j << put << skip << endl;
+    
+
+    return dp[i][j] = min(put, skip);
+}
+
+void solve(){
+    cin >> n >> k >> p;
+    pos= vector<ll>(n);
+    keys= vector<ll>(k);
+
+    for(int i=0; i<n; i++) cin >> pos[i];
+    for(int i=0; i<k; i++) cin >> keys[i];
+    
+    sort(pos.begin(), pos.end());
+    sort(keys.begin(), keys.end());
+
+    vector<vector<ll>> dp(n, vector<ll>(k, -1));
+    cout << dpf(dp, 0, 0);
+     
 
 
-    cout << ans << endl;
+    cout << endl;
 }
 
 
